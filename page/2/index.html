@@ -96,7 +96,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -129,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/page/2/">
 
 
 
@@ -260,7 +260,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/34.操作元素样式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/24.原生的forEach和自我实现的forEach方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Calm">
@@ -279,7 +279,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/09/34.操作元素样式/" itemprop="url">34.操作元素样式</a></h1>
+                <a class="post-title-link" href="/2019/05/06/24.原生的forEach和自我实现的forEach方法/" itemprop="url">24.原生的forEach和自我实现的forEach方法</a></h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-09T17:37:14+08:00">
-                2019-05-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-06T21:50:55+08:00">
+                2019-05-06
               </time>
             
 
@@ -353,16 +353,14 @@
       
         
           
-          
-第一种方式,注意点: 由于class在JS中是一个关键字, 所以叫做classNameoDiv.className = “box”;
+          Array对象原生的forEach
+forEach方法会自动调用传入的函数，每次调用都会将当前遍历到的元素和当前遍历到的索引，和当前被遍历的数组传递给这个函数
 
-第二种方式,注意点:过去CSS中通过-连接的样式,在JS中都是驼峰命名,注意点: 通过JS添加的样式都是行内样式, 会覆盖掉同名的CSS样式
-
-注意点: 通过st
+1234arr.forEach(function (currentValue, currentIndex, currentArray)&#
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/05/09/34.操作元素样式/#more" rel="contents">
+            <a class="btn" href="/2019/05/06/24.原生的forEach和自我实现的forEach方法/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -413,7 +411,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/33.属性增删改查/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/23.对象深拷贝/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Calm">
@@ -432,7 +430,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/09/33.属性增删改查/" itemprop="url">33.属性增删改查</a></h1>
+                <a class="post-title-link" href="/2019/05/06/23.对象深拷贝/" itemprop="url">23.对象深拷贝</a></h1>
         
 
         <div class="post-meta">
@@ -444,8 +442,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-09T14:27:14+08:00">
-                2019-05-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-06T21:10:55+08:00">
+                2019-05-06
               </time>
             
 
@@ -507,14 +505,13 @@
         
           
           
-无论是通过document创建还是查询出来的标签,系统都会将元素包装成一个对象返回给我们
-注意点:通过对象.属性名称的方式无法获取到自定义属性的取值,通过getAttribute方法可以获取到自定义属性的取值
+assign方法可以将第二个参数的对象的属性和方法拷贝到第一个参数的对象中
 
-1234567891011121314151617181920212223242526
+123456789101112131415161718// 深拷贝      class Person&#123;            name = "lnj";            age = 34;       
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/05/09/33.属性增删改查/#more" rel="contents">
+            <a class="btn" href="/2019/05/06/23.对象深拷贝/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -565,7 +562,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/32.DOM的一些注意点/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/22.深拷贝和浅拷贝/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Calm">
@@ -584,7 +581,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/09/32.DOM的一些注意点/" itemprop="url">32.DOM</a></h1>
+                <a class="post-title-link" href="/2019/05/06/22.深拷贝和浅拷贝/" itemprop="url">22.深拷贝和浅拷贝</a></h1>
         
 
         <div class="post-meta">
@@ -596,8 +593,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-09T09:17:14+08:00">
-                2019-05-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-06T19:49:55+08:00">
+                2019-05-06
               </time>
             
 
@@ -659,11 +656,19 @@
         
           
           
-在 HTML DOM 中，所有事物都是节点。DOM 是被视为节点树的 HTML。DOM 节点根据 W3C 的 HTML DOM 标准，HTML 文档中的所有内容都是节点：整个文档是一个文档节点每个 HTML 元素是元素节点HTML 元素内的文本是文本节点每个 HTML 属性是属性节点注释是注释节点
+什么是深拷贝什么是浅拷贝?
+
+
+深拷贝,修改新变量的值不会影响原有变量的值,默认情况下基本数据类型都是深拷贝
+
+浅拷贝,修改新变量的值会影响原有的变量的值,默认情况下引用类型都是浅拷贝
+
+
+12345678910111213141516171819// 深拷贝        let num1 = 
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/05/09/32.DOM的一些注意点/#more" rel="contents">
+            <a class="btn" href="/2019/05/06/22.深拷贝和浅拷贝/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -714,7 +719,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/31.三大对象/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/21.对象解构赋值及解构赋值应用场景/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Calm">
@@ -733,7 +738,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/08/31.三大对象/" itemprop="url">31.三大对象</a></h1>
+                <a class="post-title-link" href="/2019/05/06/21.对象解构赋值及解构赋值应用场景/" itemprop="url">21.对象解构赋值-ES6</a></h1>
         
 
         <div class="post-meta">
@@ -745,8 +750,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-08T20:12:54+08:00">
-                2019-05-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-06T19:43:55+08:00">
+                2019-05-06
               </time>
             
 
@@ -807,16 +812,15 @@
       
         
           
-          JavaScript中提供三种自带的对象,分别是”本地对象”/“内置对象”/“宿主对象”
+          注意点:
 
-什么是宿主?宿主就是指JavaScript运行环境,js可以在浏览器中运行,也可以在服务器上运行(nodejs)
+对象的解构赋值和数组的解构赋值 除了符号不一样, 其它的一模一样，数组解构使用[]，对象解构使用{}
 
-1.本地对象
-与宿主无关，无论在浏览器还是服务器中都有的对象，就是ECMAScript标准中
+123456789101112131415161718192021       // 1.在数组的解构赋值中, 等号左边的格式必须和等号右边的格式一模一样, 才能完全解构       
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/05/08/31.三大对象/#more" rel="contents">
+            <a class="btn" href="/2019/05/06/21.对象解构赋值及解构赋值应用场景/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -867,7 +871,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/30.基本数据类型和基本包装类型/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/20-对象的增删改查/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Calm">
@@ -886,7 +890,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/08/30.基本数据类型和基本包装类型/" itemprop="url">30.基本数据类型和基本包装类型</a></h1>
+                <a class="post-title-link" href="/2019/05/06/20-对象的增删改查/" itemprop="url">20.对象的增删改查</a></h1>
         
 
         <div class="post-meta">
@@ -898,8 +902,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-08T16:52:50+08:00">
-                2019-05-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-06T18:43:55+08:00">
+                2019-05-06
               </time>
             
 
@@ -961,766 +965,19 @@
         
           
           
-以前之所以能够访问基本数据类型的属性和方法,是因为在运行的时候系统自动将基本数据类型包装成了对象类型
+点访问法
+1p.name = "lnj";//没引号
 
-看下面，str为什么有length属性，str是基本数据类型，基本数据类型是没有属性和方法的，这是因为js帮我们包装成了相应的对象类型
-123let str = "www.it666.com";
+中括号访问法
+1p["name"] = "zs";//有引号
+
+
+
+123456789101112131415161718192021222324252627282930313233343536class Person&#123;&#125;
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/05/08/30.基本数据类型和基本包装类型/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/29.字符串常用方法及字符串模板/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Calm">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/08/29.字符串常用方法及字符串模板/" itemprop="url">29.字符串常用方法及字符串模板</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-08T15:42:05+08:00">
-                2019-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-在js中字符串可以看做一个特殊的数组,所以大部分数组的属性/方法字符串都可以使用
-
-123456789101112131415161718192021222324252627282930311.获取字符串长度  .lengthlet str = "abcd";console.log(str.len
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/08/29.字符串常用方法及字符串模板/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/28.数组排序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Calm">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/08/28.数组排序/" itemprop="url">28.数组排序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-08T13:02:05+08:00">
-                2019-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          注意点：
-
-如果 compareFunction(a, b) 小于 0 ，那么 a 会被排列到 b 之前；（a-b&lt;0  a小于b）
-
-如果 compareFunction(a, b) 等于 0 ， a 和 b 的相对位置不变。
-
-如果 compareFunction(a, b) 大于 0 ，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/08/28.数组排序/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/27.实现自定义数组API：map和filter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Calm">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/08/27.实现自定义数组API：map和filter/" itemprop="url">27.实现自定义数组API：map和filter</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-08T12:01:05+08:00">
-                2019-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          filter实现1234567891011121314151617181920// filter实现        let arr = [3, 2, 6, 7, 6,10];        Array.prototype.myFilter = function (fn) &#123;        
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/08/27.实现自定义数组API：map和filter/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/26.数组API：map和filter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Calm">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/08/26.数组API：map和filter/" itemprop="url">26.数组API：map和filter</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-08T10:59:05+08:00">
-                2019-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-数组的filter方法:将满足条件的元素添加到一个新的数组中，仅有满足条件的元素
-
-123456789101112let arr = [1, 2, 3, 4, 5];        // 1.数组的filter方法:        // 将满足条件的元素添加到一个新的数组中        /*  
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/08/26.数组API：map和filter/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/25.定制版的indexOf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Calm">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/08/25.定制版的indexOf/" itemprop="url">25.定制版的indexOf</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-08T10:01:05+08:00">
-                2019-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1234567891011121314151617let arr = [3, 2, 6, 7, 6,10];Array.prototype.findIndex1=function(fn)&#123;  for(let i=0;i&lt;this.length;i++)&#123;    if(fn(
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/08/25.定制版的indexOf/#more" rel="contents">
+            <a class="btn" href="/2019/05/06/20-对象的增删改查/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1762,7 +1019,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 
