@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="assign方法可以将第二个参数的对象的属性和方法拷贝到第一个参数的对象中  123456789101112131415161718// 深拷贝      class Person&amp;#123;            name = &quot;lnj&quot;;            age = 34;        &amp;#125;        let p1 = new Person();        let p">
+<meta name="description" content="什么是闭包(closure)? 闭包是一种特殊的函数。  如何生成一个闭包? 当一个内部函数引用了外部函数的数据(变量/函数)时, 那么内部的函数就是闭包 所以只要满足”是函数嵌套“、”内部函数引用外部函数数据“  闭包特点: 只要闭包还在使用外部函数的数据, 那么外部的数据就一直不会被释放 也就是说可以延长外部函数数据的生命周期  闭包注意点: 当后续不需要使用闭包时候, 一定要手动将闭包设置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="23.对象深拷贝">
-<meta property="og:url" content="http://yoursite.com/2019/05/06/23.对象深拷贝/index.html">
+<meta property="og:title" content="37.闭包基本概念">
+<meta property="og:url" content="http://yoursite.com/2019/05/10/37.闭包基本概念/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="assign方法可以将第二个参数的对象的属性和方法拷贝到第一个参数的对象中  123456789101112131415161718// 深拷贝      class Person&amp;#123;            name = &quot;lnj&quot;;            age = 34;        &amp;#125;        let p1 = new Person();        let p">
+<meta property="og:description" content="什么是闭包(closure)? 闭包是一种特殊的函数。  如何生成一个闭包? 当一个内部函数引用了外部函数的数据(变量/函数)时, 那么内部的函数就是闭包 所以只要满足”是函数嵌套“、”内部函数引用外部函数数据“  闭包特点: 只要闭包还在使用外部函数的数据, 那么外部的数据就一直不会被释放 也就是说可以延长外部函数数据的生命周期  闭包注意点: 当后续不需要使用闭包时候, 一定要手动将闭包设置">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-06T13:57:12.894Z">
+<meta property="og:updated_time" content="2019-06-07T08:58:47.540Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="23.对象深拷贝">
-<meta name="twitter:description" content="assign方法可以将第二个参数的对象的属性和方法拷贝到第一个参数的对象中  123456789101112131415161718// 深拷贝      class Person&amp;#123;            name = &quot;lnj&quot;;            age = 34;        &amp;#125;        let p1 = new Person();        let p">
+<meta name="twitter:title" content="37.闭包基本概念">
+<meta name="twitter:description" content="什么是闭包(closure)? 闭包是一种特殊的函数。  如何生成一个闭包? 当一个内部函数引用了外部函数的数据(变量/函数)时, 那么内部的函数就是闭包 所以只要满足”是函数嵌套“、”内部函数引用外部函数数据“  闭包特点: 只要闭包还在使用外部函数的数据, 那么外部的数据就一直不会被释放 也就是说可以延长外部函数数据的生命周期  闭包注意点: 当后续不需要使用闭包时候, 一定要手动将闭包设置">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/06/23.对象深拷贝/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/10/37.闭包基本概念/">
 
 
 
 
 
-  <title>23.对象深拷贝 | Hexo</title>
+  <title>37.闭包基本概念 | Hexo</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/23.对象深拷贝/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/10/37.闭包基本概念/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Calm">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">23.对象深拷贝</h1>
+          <h1 class="post-title" itemprop="name headline">37.闭包基本概念</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-06T21:10:55+08:00">
-                2019-05-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-10T10:27:10+08:00">
+                2019-05-10
               </time>
             
 
@@ -351,26 +351,21 @@
       
 
       
-        <ul>
-<li>assign方法可以将第二个参数的对象的属性和方法拷贝到第一个参数的对象中</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 深拷贝</span></span><br><span class="line">      <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">            name = <span class="string">"lnj"</span>;</span><br><span class="line">            age = <span class="number">34</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> p1 = <span class="keyword">new</span> Person();</span><br><span class="line">        <span class="keyword">let</span> p2 = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">     </span><br><span class="line"></span><br><span class="line">        <span class="comment">// assign方法可以将第二个参数的对象的属性和方法拷贝到</span></span><br><span class="line">        <span class="comment">//第一个参数的对象中</span></span><br><span class="line">        <span class="built_in">Object</span>.assign(p2, p1);</span><br><span class="line">        <span class="comment">// console.log(p2);</span></span><br><span class="line">        p1.name = <span class="string">"zs"</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(p1.name);</span><br><span class="line">        <span class="built_in">console</span>.log(p2.name);</span><br><span class="line">        <span class="comment">// 注意点: 只有被拷贝对象中所 有属性都是基本数据类型,</span></span><br><span class="line">        <span class="comment">// 以上代码才是深拷贝</span></span><br></pre></td></tr></table></figure>
+        <ol>
+<li><p>什么是闭包(closure)?<br> 闭包是一种<strong>特殊的函数</strong>。</p>
+</li>
+<li><p>如何生成一个闭包?<br> 当一个内部函数引用了外部函数的数据(变量/函数)时, 那么内部的函数就是闭包<br> 所以只要满足”<strong>是函数嵌套</strong>“、”<strong>内部函数引用外部函数数据</strong>“</p>
+</li>
+<li><p>闭包特点:<br> 只要闭包还在使用外部函数的数据, 那么外部的数据就一直不会被释放<br> 也就是说<strong>可以延长外部函数数据的生命周期</strong></p>
+</li>
+<li><p>闭包注意点:<br> 当后续不需要使用闭包时候, 一定要手动将闭包设置为null, 否则会出现内存泄漏</p>
+</li>
+</ol>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> i = <span class="number">666</span>; <span class="comment">// 局部变量</span></span><br><span class="line">    &#125; <span class="comment">// 只要代码执行到了大括号结束, i这个变量就会自动释放</span></span><br><span class="line">    console.log(i); <span class="comment">// i is not defined</span></span><br><span class="line">    */</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">test2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> i = <span class="number">666</span>;</span><br><span class="line">        <span class="comment">// 由于demo函数满足闭包的两个条件, 所以demo函数就是闭包</span></span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">demo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            console.log(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> fn = test();</span><br><span class="line">    fn(); <span class="comment">// 666，i能访问，证明了闭包可以延长外部函数数据的生命周期</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>注意点: 只有被拷贝对象中所 有属性都是基本数据类型,以上代码才是深拷贝</li>
-<li>不会互相影响各自对基本变量的赋值了</li>
+<li>默认情况下，外部是不能访问内部的函数的数据的，比如不能访问i，如果不用闭包，i在函数 test2的}时候，已经销毁了，哪里能访问？就是生命到期了，用了闭包之后，就可以访问i了，因为闭包可以延长数据的生命周期。</li>
 </ul>
-<hr>
-<p>那么如果属性都是引用类型，如何保证还是深拷贝？</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">            name = <span class="string">"lnj"</span>;</span><br><span class="line">            cat = &#123;</span><br><span class="line">                age : <span class="number">3</span></span><br><span class="line">            &#125;;</span><br><span class="line">            scores = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> p1 = <span class="keyword">new</span> Person();</span><br><span class="line">        <span class="keyword">let</span> p2 = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"></span><br><span class="line">        depCopy(p2, p1);</span><br><span class="line">     </span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">depCopy</span>(<span class="params">target, source</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 1.通过遍历拿到source中所有的属性</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> source)&#123;</span><br><span class="line">                <span class="comment">// console.log(key);</span></span><br><span class="line">                <span class="comment">// 2.取出当前遍历到的属性对应的取值</span></span><br><span class="line">                <span class="keyword">let</span> sourceValue = source[key];</span><br><span class="line">                <span class="comment">// console.log(sourceValue);</span></span><br><span class="line">                <span class="comment">// 3.判断当前的取值是否是引用数据类型</span></span><br><span class="line">                <span class="keyword">if</span>(sourceValue <span class="keyword">instanceof</span> <span class="built_in">Object</span>)&#123;</span><br><span class="line">    </span><br><span class="line">                    <span class="keyword">let</span> subTarget = <span class="keyword">new</span> sourceValue.constructor;</span><br><span class="line">                    target[key] = subTarget;</span><br><span class="line">                    depCopy(subTarget, sourceValue);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    target[key] = sourceValue;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<p>要看懂上面，要知道几个前置知识</p>
-<ul>
-<li>所有的引用类型都是对象，通过sourceValue instanceof Object  判断为true，因为在原型链上，Object原型对象在末尾，任何一个对象如果找不到属性方法都会到Object原型对象上找，那么，通过sourceValue instanceof Object 判断为true</li>
-<li>对象的constructor===new它出来的构造函数，以此可以new出来一个空白的实例，这是不同于任何对象的地址</li>
-</ul>
-<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> subTarget = <span class="keyword">new</span> sourceValue.constructor;</span><br></pre></td></tr></table></figure>
-
 
       
     </div>
@@ -395,8 +390,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/06/22.深拷贝和浅拷贝/" rel="next" title="22.深拷贝和浅拷贝">
-                <i class="fa fa-chevron-left"></i> 22.深拷贝和浅拷贝
+              <a href="/2019/05/09/36.一些事件函数/" rel="next" title="36.一些事件函数">
+                <i class="fa fa-chevron-left"></i> 36.一些事件函数
               </a>
             
           </div>
@@ -405,8 +400,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/06/24.原生的forEach和自我实现的forEach方法/" rel="prev" title="24.原生的forEach和自我实现的forEach方法">
-                24.原生的forEach和自我实现的forEach方法 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/10/38.循环索引同步：利用自执行函数以及闭包/" rel="prev" title="38.循环索引同步：利用自执行函数，闭包">
+                38.循环索引同步：利用自执行函数，闭包 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

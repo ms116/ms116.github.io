@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="为什么要同步？ 因为不同步啊，和预期不一样，如何同步？同步的意思就是i=0，输出0，i=1，输出1  1234567for(var i = 0; i &amp;lt; 3; i++)&amp;#123; // 0 1 2 3        function test() &amp;#123;            console.log(i); // 3        &amp;#125;//注意，函数并没有调用执行！！！，只是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="38.循环索引同步：利用自执行函数，闭包">
+<meta property="og:url" content="http://yoursite.com/2019/05/10/38.循环索引同步：利用自执行函数以及闭包/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="为什么要同步？ 因为不同步啊，和预期不一样，如何同步？同步的意思就是i=0，输出0，i=1，输出1  1234567for(var i = 0; i &amp;lt; 3; i++)&amp;#123; // 0 1 2 3        function test() &amp;#123;            console.log(i); // 3        &amp;#125;//注意，函数并没有调用执行！！！，只是">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-07T12:56:00.605Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="38.循环索引同步：利用自执行函数，闭包">
+<meta name="twitter:description" content="为什么要同步？ 因为不同步啊，和预期不一样，如何同步？同步的意思就是i=0，输出0，i=1，输出1  1234567for(var i = 0; i &amp;lt; 3; i++)&amp;#123; // 0 1 2 3        function test() &amp;#123;            console.log(i); // 3        &amp;#125;//注意，函数并没有调用执行！！！，只是">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/10/38.循环索引同步：利用自执行函数以及闭包/">
+
+
+
+
+
+  <title>38.循环索引同步：利用自执行函数，闭包 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/10/38.循环索引同步：利用自执行函数以及闭包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Calm">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">38.循环索引同步：利用自执行函数，闭包</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-10T14:31:25+08:00">
+                2019-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="为什么要同步？"><a href="#为什么要同步？" class="headerlink" title="为什么要同步？"></a>为什么要同步？</h2><ul>
+<li>因为不同步啊，和预期不一样，如何同步？同步的意思就是i=0，输出0，i=1，输出1</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123; <span class="comment">// 0 1 2 3</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(i); <span class="comment">// 3</span></span><br><span class="line">        &#125;<span class="comment">//注意，函数并没有调用执行！！！，只是创建函数而已</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// console.log(i); // 3</span></span><br><span class="line">    test();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注意，<strong>==<em>for循环里面函数并没有调用执行</em>==</strong>！！！，只是创建函数而已</li>
+<li>默认情况下通过var定义的变量,只要不是定义在函数中都是全局变量，<strong>所以i是全局变量</strong></li>
+<li>for执行三次，就是说会创建三个==test函数（处于全局作用域中）==，而后创建的同名函数会覆盖先前创建的同名函数，那么==当for执行完时==，i=3【i是全局变量】，==只有一个test函数（其他被覆盖了）==，所以调用test函数时【顺序执行嘛，for已执行完，创建test函数时，在for里面并没有执行test】，i=3</li>
+<li>每一个test函数都是属于window的， 这也是test();能执行的原因</li>
+<li>和预期很不同：想i等于0，输出0，i=1，输出1</li>
+</ul>
+<h2 id="循环索引同步方案一"><a href="#循环索引同步方案一" class="headerlink" title="循环索引同步方案一"></a>循环索引同步方案一</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123; <span class="comment">// 0 1 2 3</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(i); <span class="comment">// 0 1 2</span></span><br><span class="line">        &#125;</span><br><span class="line">        test();</span><br><span class="line">    &#125;</span><br><span class="line">    等价于下面【立即执行函数】</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123; <span class="comment">// 0 1 2 3</span></span><br><span class="line">        (<span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(i); <span class="comment">// 0 1 2</span></span><br><span class="line">        &#125;)();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    又等价于下面</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123; <span class="comment">// 0 1 2 3</span></span><br><span class="line">        <span class="comment">// function test(index) &#123; // var index = i;</span></span><br><span class="line">        <span class="comment">//     console.log(index); // 0 1 2</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// test(i);</span></span><br><span class="line">        (<span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">index</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(index); <span class="comment">// 0 1 2</span></span><br><span class="line">        &#125;)(i);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注意最后一种写法:</li>
+</ul>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">function</span> test(<span class="name">index</span>) &#123;</span><br><span class="line">            console.log(<span class="name">index</span>)<span class="comment">; // 0 1 2</span></span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>实质上，这玩意不太容易看懂，学名叫自执行函数（（立即调用的函数表达式）），有两种形式<br>部分内容参考自<a href="https://www.jianshu.com/p/c64bfbcd34c3" target="_blank" rel="noopener">浅谈自执行函数</a></li>
+</ul>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 方式一</span><br><span class="line">    (<span class="function"><span class="keyword">function</span></span> fun4()&#123;</span><br><span class="line">        console.<span class="built_in">log</span>(<span class="string">"fun4"</span>);</span><br><span class="line">    &#125;()); // <span class="string">"fun4"</span></span><br><span class="line"></span><br><span class="line">```    </span><br><span class="line">- 分析：因为在JavaScript语言中，()里面不能包含语句（只能是表达式），所以解析器在解析到<span class="function"><span class="keyword">function</span></span>关键字的时候，会把它们当作<span class="function"><span class="keyword">function</span></span>表达式，而不是正常的函数声明。</span><br><span class="line">&gt;js中的表达式（expression）：js中的一个短语，js解释器会将其计算出一个结果。程序中的常量是最简单的一类表达式。联想，算数表达式，逻辑表达式都会返回一个结果。</span><br><span class="line">- 既然解析器在解析到<span class="function"><span class="keyword">function</span></span>关键字的时候，把它们当作<span class="function"><span class="keyword">function</span></span>表达式，既然是表达式，那么也会返回一个结果，假设为一个地址值fn，那么就相当于下面那样了，</span><br></pre></td></tr></table></figure>
+
+<p>let fn=function fun4(){<br>        console.log(“fun4”);<br>    }</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 似曾相识有没有？==加上后面的<span class="params">()</span>,即fn<span class="params">()</span>==,这就调用了函数了，所以学名叫自执行函数（（立即调用的函数表达式））</span><br></pre></td></tr></table></figure>
+
+<pre><code>// 方式二
+(function fun5(){
+    console.log(&quot;fun5&quot;);
+})();// &quot;fun4&quot;</code></pre><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 写法上建议采用方式一（这是参考文的建议。但实际上，我个人觉得方式二比较常见）。（上面链接的原话）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 循环索引同步练习（运用方案一）</span><br></pre></td></tr></table></figure>
+
+<p>let oBtns = document.querySelectorAll(“button”);<br>    for(var i = 0; i &lt; oBtns.length; i++) {<br>        let btn = oBtns[i];<br>        (function test(index) { // var index = i;<br>            // console.log(index); // 0 1 2</p>
+<p> // 注意点: onclick对应的方法由于满足了闭包的条件,<br> // 所以onclick对应的方法也是一个闭包<br>            btn.onclick = function () {<br>                console.log(index);<br>            }<br>        })(i);<br>    }</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>==每定义一个函数，就开启一个作用域（作用域就一块内存，不同内存的变量互不干扰）==，那么for执行三次，就会定义了三个自执行函数的作用域，每一个作用域中有两块东西，一是index值和闭包onclick函数，如下图</span><br><span class="line">![<span class="string">产生的三块内存</span>](<span class="link">https://s2.ax1x.com/2019/06/07/V03JUI.png</span>)</span><br><span class="line"><span class="bullet">- </span>所以点击时，输出相应的值（==因为所处的内存不同==），达到了循环索引同步</span><br><span class="line"></span><br><span class="line"><span class="section">## 循环索引同步方案二</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">为了引入这个方案，先看以下的代码</span><br></pre></td></tr></table></figure>
+
+<p>  var list = [];<br>    // 这里的i是全局变量<br>    for(var i = 0; i &lt; 3; i++){ // 0 1 2 3<br>        var fn = function test() {<br>            console.log(i); // 3<br>        }<br>        list.push(fn);<br>    }<br>    // console.log(i);<br>    // console.log(list);<br>    list<a href>0</a>;
+    list<a href>1</a>;
+    list<a href>2</a>;</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 三个函数输出都为<span class="number">3</span>，因为i是全局变量。</span><br><span class="line"></span><br><span class="line">## 方案二：用<span class="keyword">let</span>定义索引</span><br></pre></td></tr></table></figure>
+
+<p>let list = [];<br>    // 这里的i是局部变量<br>    // 注意点: 由于i是局部变量, 所以每次执行完循环体都会重新定义一个i变量<br>    for(let i = 0; i &lt; 3; i++){ // 0 1 2 3<br>        let fn = function test() {<br>            console.log(i); // 3<br>        }<br>        list.push(fn);<br>    }<br>    // console.log(i); // i is not defined<br>    // console.log(list);<br>    list<a href>0</a>;
+    list<a href>1</a>;
+    list<a href>2</a>;</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>分别输出0，1，2，因为每次执行完循环体都会重新定义一个i变量（因为局部变量的生命周期在for的右边花括号｝就结束了），看下图。</span><br><span class="line">![<span class="string">重新定义i</span>](<span class="link">https://s2.ax1x.com/2019/06/07/V0ws61.jpg</span>)</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>for(let i = 0; i &lt; 3; i++){ // 0 1 2 3<br>        // 注意点: 在ES6中由于{}是块级作用域, 所以只要在块级作用域中定义了一个函数<br>        //         并且这个函数中用到了块级作用域中的数据, 那么这个函数就是闭包<br>        function test() {<br>            console.log(i); // 3<br>        }<br>    }<br>    test(); // 2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- <span class="built_in">test</span>()是闭包，看起来是不是怪？以往函数嵌套函数，且用到了外部作用域的值才会是闭包，==现在没有函数嵌套函数啊==？其实函数嵌套函数，本质上==定义了一个函数就是开启了一个作用域==，函数嵌套了函数，也可以说是==非全局的作用域嵌套了一个作用域==，那么定义闭包的说，可以说成，==在某一个非全局作用域里面定义了一个函数而且这个函数用到了那个作用域的值，就是闭包==，因为<span class="keyword">for</span>的&#123;&#125;是块级作用域，而且在里面定义了一个函数<span class="built_in">test</span>，且<span class="built_in">test</span>用到了i，所以<span class="built_in">test</span>也是一个闭包！~</span><br><span class="line">- 为什么 <span class="built_in">test</span>(); // 2输出2，因为其他<span class="built_in">test</span>都被覆盖了，只剩最后一个，</span><br><span class="line">- 为什么其他<span class="built_in">test</span>函数会被覆盖？<span class="keyword">for</span>的局部作用域和全局作用域，==在<span class="keyword">for</span>执行完三次循环，就销毁<span class="keyword">for</span>的作用域，回收内存了==，所以还剩下全局作用域，又因为==闭包执行完后其作用域就不会被收回==，所以三个==<span class="built_in">test</span>函数都暴露在全局作用域了==，所以会被最后一个<span class="built_in">test</span>函数覆盖其他函数</span><br><span class="line">- 为什么说三个==<span class="built_in">test</span>函数都暴露在全局作用域了？？==看下面的图片</span><br><span class="line">![<span class="built_in">test</span>暴露在全局作用域](https://s2.ax1x.com/2019/06/07/V0Bvyn.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 循环索引同步练习：方案二</span></span><br></pre></td></tr></table></figure>
+
+<p>/*
+    // 在ES6中<br>    // 1.for循环中通过let定义的变量是一个局部变量<br>    // 2.for循环中通过let定义的变量每次执行循环体都会重新定义一个新的<br>    //   也就是每个循环体都有一个属于自己的变量</p>
+<pre><code>// 3.for循环中如果定义了函数, 这个函数用到了通过let定义的变量,
+// 那么这个函数是一个闭包
+for(let i = 0; i &lt; 3; i++){
+    function test() {
+        console.log(i);
+    }
+}
+*/
+let oBtns = document.querySelectorAll(&quot;button&quot;);
+for(let i = 0; i &lt; oBtns.length; i++){
+    let btn = oBtns[i];
+    btn.onclick = function () {
+        console.log(i);
+    }
+}</code></pre><pre><code>
+- 页面三个按钮，点击按钮0，输出0，点击按钮1，输出1</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/10/37.闭包基本概念/" rel="next" title="37.闭包基本概念">
+                <i class="fa fa-chevron-left"></i> 37.闭包基本概念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Calm">
+          <p class="site-author-name" itemprop="name">Calm</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要同步？"><span class="nav-number">1.</span> <span class="nav-text">为什么要同步？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环索引同步方案一"><span class="nav-number">2.</span> <span class="nav-text">循环索引同步方案一</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Calm</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
