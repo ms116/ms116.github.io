@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="什么是排它思想?清除其它非选中元素的样式, 只设置当前选中元素样式  html 12345678910111213141516&amp;lt;div id=&quot;tab&quot;&amp;gt;    &amp;lt;ul id=&quot;tab_top&quot;&amp;gt;        &amp;lt;li class=&quot;tab-item selected&quot;&amp;gt;新闻&amp;lt;/li&amp;gt;        &amp;lt;li class=&quot;tab-item&quot;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="39.运用排他思想写面向对象Tab选项卡">
+<meta property="og:url" content="http://yoursite.com/2019/05/10/javascript/39.运用排他思想写面向对象Tab选项卡/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是排它思想?清除其它非选中元素的样式, 只设置当前选中元素样式  html 12345678910111213141516&amp;lt;div id=&quot;tab&quot;&amp;gt;    &amp;lt;ul id=&quot;tab_top&quot;&amp;gt;        &amp;lt;li class=&quot;tab-item selected&quot;&amp;gt;新闻&amp;lt;/li&amp;gt;        &amp;lt;li class=&quot;tab-item&quot;&amp;">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/07/V0HbD0.png">
+<meta property="og:updated_time" content="2019-06-07T14:57:33.192Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="39.运用排他思想写面向对象Tab选项卡">
+<meta name="twitter:description" content="什么是排它思想?清除其它非选中元素的样式, 只设置当前选中元素样式  html 12345678910111213141516&amp;lt;div id=&quot;tab&quot;&amp;gt;    &amp;lt;ul id=&quot;tab_top&quot;&amp;gt;        &amp;lt;li class=&quot;tab-item selected&quot;&amp;gt;新闻&amp;lt;/li&amp;gt;        &amp;lt;li class=&quot;tab-item&quot;&amp;">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/06/07/V0HbD0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/10/javascript/39.运用排他思想写面向对象Tab选项卡/">
+
+
+
+
+
+  <title>39.运用排他思想写面向对象Tab选项卡 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/10/javascript/39.运用排他思想写面向对象Tab选项卡/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Calm">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">39.运用排他思想写面向对象Tab选项卡</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-10T17:41:15+08:00">
+                2019-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>什么是排它思想?清除其它非选中元素的样式, 只设置当前选中元素样式</li>
+</ul>
+<p>html</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">id</span>=<span class="string">"tab"</span>&gt;</span><br><span class="line">    &lt;ul <span class="built_in">id</span>=<span class="string">"tab_top"</span>&gt;</span><br><span class="line">        &lt;li <span class="built_in">class</span>=<span class="string">"tab-item selected"</span>&gt;新闻&lt;/li&gt;</span><br><span class="line">        &lt;li <span class="built_in">class</span>=<span class="string">"tab-item"</span>&gt;视频&lt;/li&gt;</span><br><span class="line">        &lt;li <span class="built_in">class</span>=<span class="string">"tab-item"</span>&gt;音乐&lt;/li&gt;</span><br><span class="line">        &lt;li <span class="built_in">class</span>=<span class="string">"tab-item"</span>&gt;军事&lt;/li&gt;</span><br><span class="line">        &lt;li <span class="built_in">class</span>=<span class="string">"tab-item"</span>&gt;财经&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> <span class="built_in">id</span>=<span class="string">"tab_bottom"</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"tab-content"</span>&gt;新闻的内容&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"tab-content"</span>&gt;视频的内容&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"tab-content"</span>&gt;音乐的内容&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"tab-content"</span>&gt;军事的内容&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"tab-content"</span>&gt;财经的内容&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">    &lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>css</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        *&#123;</span><br><span class="line">            margin: 0;</span><br><span class="line">            padding: 0;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-id">#tab</span>&#123;</span></span><br><span class="line">            width: 400px;</span><br><span class="line">            height: 300px;</span><br><span class="line"><span class="css">            <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#000</span>;</span></span><br><span class="line">            margin: 100px auto;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-id">#tab_top</span>&#123;</span></span><br><span class="line">            list-style: none;</span><br><span class="line">            width: 100%;</span><br><span class="line">            height: 50px;</span><br><span class="line">            line-height: 50px;</span><br><span class="line">            text-align: center;</span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: space-between;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-id">#tab_top</span>&gt;<span class="selector-tag">li</span>&#123;</span></span><br><span class="line">            width: 80px;</span><br><span class="line">            height: 100%;</span><br><span class="line">            background: skyblue;</span><br><span class="line"><span class="css">            <span class="selector-tag">border-right</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#ccc</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-id">#tab_top</span>&gt;<span class="selector-tag">li</span><span class="selector-pseudo">:last-child</span>&#123;</span></span><br><span class="line">            border-right: none;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-id">#tab_bottom</span>&#123;</span></span><br><span class="line">            width: 100%;</span><br><span class="line">            height: 250px;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-id">#tab_bottom</span>&gt;<span class="selector-class">.tab-content</span>&#123;</span></span><br><span class="line">            width: 100%;</span><br><span class="line">            height: 100%;</span><br><span class="line">            display: none;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.selected</span>&#123;</span></span><br><span class="line">            background: red !important;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>js</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="class"><span class="keyword">class</span> <span class="title">Tab</span></span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">constructor</span>()&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">this</span>.oTabItems = <span class="built_in">document</span>.querySelectorAll(<span class="string">".tab-item"</span>);</span></span><br><span class="line"><span class="javascript">            <span class="keyword">this</span>.oTabContents = <span class="built_in">document</span>.querySelectorAll(<span class="string">".tab-content"</span>);</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.oTabContents[<span class="number">0</span>].style.display = <span class="string">"block"</span>;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.previousIndex = <span class="number">0</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        addClickEvent()&#123;</span><br><span class="line"><span class="javascript">            <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.oTabItems.length; i++)&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> tabItem = <span class="keyword">this</span>.oTabItems[i];</span></span><br><span class="line"><span class="javascript">                tabItem.onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>._change(i);</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        addMoveEvent()&#123;</span><br><span class="line"><span class="javascript">            <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.oTabItems.length; i++)&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> tabItem = <span class="keyword">this</span>.oTabItems[i];</span></span><br><span class="line"><span class="javascript">                tabItem.onmousemove = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>._change(i);</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        /*如果在方法名称前面加上_, 代表告诉其他的程序员这个是一个私有的方法, 不要调用</span><br><span class="line">        * 注意点: 仅仅是告诉别人这个是一个私有的方法, 并不是真正的是一个私有的方法*/</span><br><span class="line">        _change(i)&#123;</span><br><span class="line"><span class="actionscript">            <span class="comment">// 1.排它</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> preTabItem = <span class="keyword">this</span>.oTabItems[<span class="keyword">this</span>.previousIndex];</span></span><br><span class="line"><span class="actionscript">            preTabItem.className = preTabItem.className.replace(<span class="string">"selected"</span>, <span class="string">""</span>);</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> preTabContent = <span class="keyword">this</span>.oTabContents[<span class="keyword">this</span>.previousIndex];</span></span><br><span class="line"><span class="actionscript">            preTabContent.style.display = <span class="string">"none"</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">            <span class="comment">// 2.设置当前的样式</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> curTabItem = <span class="keyword">this</span>.oTabItems[i];</span></span><br><span class="line"><span class="actionscript">            curTabItem.className = curTabItem.className + <span class="string">" selected"</span>;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> curTabContent = <span class="keyword">this</span>.oTabContents[i];</span></span><br><span class="line"><span class="actionscript">            curTabContent.style.display = <span class="string">"block"</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">            <span class="comment">// 3.保存当前的索引</span></span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.previousIndex = i;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> tab = <span class="keyword">new</span> Tab();</span></span><br><span class="line">    tab.addClickEvent();</span><br><span class="line"><span class="actionscript">    <span class="comment">// tab.addMoveEvent();</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.ax1x.com/2019/06/07/V0HbD0.png" alt="Tab效果"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/10/javascript/38.循环索引同步：利用自执行函数以及闭包/" rel="next" title="38.循环索引同步：利用自执行函数，闭包">
+                <i class="fa fa-chevron-left"></i> 38.循环索引同步：利用自执行函数，闭包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/10/javascript/40.日期对象/" rel="prev" title="40.日期对象">
+                40.日期对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Calm">
+          <p class="site-author-name" itemprop="name">Calm</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Calm</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
