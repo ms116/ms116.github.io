@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="选择器（1） 选择器里面的属性，值，其实分号;可以不写的 CSS选择器的解析顺序：从右往左解析，参考文章：为什么CSS选择器是从右往左解析，归根结底是性能问题，例子看这里为什么从右向左的规则要比从左向右的高效？    假如 DOM 的结构如上图，匹配规则是 .mod-nav h3 span。若从左向右的匹配，过程是：从 .mod-nav 开始，遍历子节点 header 和子节点 div，然后各自向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="03.css基础1，非布局样式：选择器，伪元素与伪类，字体和字体族，行高">
+<meta property="og:url" content="http://yoursite.com/2019/03/07/css和html/03.css基础1，非布局样式：选择器，伪元素与伪类，字体和字体族，行高/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="选择器（1） 选择器里面的属性，值，其实分号;可以不写的 CSS选择器的解析顺序：从右往左解析，参考文章：为什么CSS选择器是从右往左解析，归根结底是性能问题，例子看这里为什么从右向左的规则要比从左向右的高效？    假如 DOM 的结构如上图，匹配规则是 .mod-nav h3 span。若从左向右的匹配，过程是：从 .mod-nav 开始，遍历子节点 header 和子节点 div，然后各自向">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/08/VBo6L6.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/08/VBT3kD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/08/VBTt1A.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/08/VB77a8.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/08/VBHjYD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/08/VBqMgH.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/08/VBObge.md.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/08/VBXJV1.md.png">
+<meta property="og:updated_time" content="2019-06-08T07:54:56.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="03.css基础1，非布局样式：选择器，伪元素与伪类，字体和字体族，行高">
+<meta name="twitter:description" content="选择器（1） 选择器里面的属性，值，其实分号;可以不写的 CSS选择器的解析顺序：从右往左解析，参考文章：为什么CSS选择器是从右往左解析，归根结底是性能问题，例子看这里为什么从右向左的规则要比从左向右的高效？    假如 DOM 的结构如上图，匹配规则是 .mod-nav h3 span。若从左向右的匹配，过程是：从 .mod-nav 开始，遍历子节点 header 和子节点 div，然后各自向">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/06/08/VBo6L6.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/07/css和html/03.css基础1，非布局样式：选择器，伪元素与伪类，字体和字体族，行高/">
+
+
+
+
+
+  <title>03.css基础1，非布局样式：选择器，伪元素与伪类，字体和字体族，行高 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/css和html/03.css基础1，非布局样式：选择器，伪元素与伪类，字体和字体族，行高/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Calm">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">03.css基础1，非布局样式：选择器，伪元素与伪类，字体和字体族，行高</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-07T10:33:55+08:00">
+                2019-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css和html/" itemprop="url" rel="index">
+                    <span itemprop="name">css和html</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="选择器（1）"><a href="#选择器（1）" class="headerlink" title="选择器（1）"></a>选择器（1）</h2><ul>
+<li>选择器里面的属性，值，其实分号;可以不写的</li>
+<li>CSS选择器的解析顺序：从右往左解析，参考文章：<br><a href="https://blog.csdn.net/jinboker/article/details/52126021" target="_blank" rel="noopener">为什么CSS选择器是从右往左解析</a>，归根结底是性能问题，例子看这里<a href="https://www.cnblogs.com/everest33Tong/p/5849578.html" target="_blank" rel="noopener">为什么从右向左的规则要比从左向右的高效？</a></li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/06/08/VBo6L6.jpg" alt="dom树"></p>
+<blockquote>
+<p>假如 DOM 的结构如上图，匹配规则是 .mod-nav h3 span。<br>若从左向右的匹配，过程是：从 .mod-nav 开始，遍历子节点 header 和子节点 div，然后各自向子节点遍历。在右侧 div 的分支中，最后遍历到叶子节点 a ，发现不符合规则，需要回溯到 ul 节点，再遍历下一个 li-a，假如有 1000 个 li，则这 1000 次的遍历与回溯会损失很多性能。<br>再看看从右至左的匹配：先找到所有的最右节点 span，对于每一个 span，向上寻找节点 h3，由 h3再向上寻找 class=”mod-nav” 的节点，最后找到根元素 html 则结束这个分支的遍历。</p>
+</blockquote>
+<h2 id="伪元素与伪类"><a href="#伪元素与伪类" class="headerlink" title="伪元素与伪类"></a>伪元素与伪类</h2><p><img src="https://s2.ax1x.com/2019/06/08/VBT3kD.png" alt="伪元素伪类"></p>
+<h2 id="非布局样式（字体和字体族）"><a href="#非布局样式（字体和字体族）" class="headerlink" title="非布局样式（字体和字体族）"></a>非布局样式（字体和字体族）</h2><p><a href="https://imgchr.com/i/VBTt1A" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/06/08/VBTt1A.md.png" alt="VBTt1A.md.png"></a></p>
+<h2 id="非布局样式（行高）"><a href="#非布局样式（行高）" class="headerlink" title="非布局样式（行高）"></a>非布局样式（行高）</h2><p><img src="https://s2.ax1x.com/2019/06/08/VB77a8.png" alt="VB77a8.png"></p>
+<ul>
+<li><p>有n个inline box元素，每一个的行高都不一样，最大为30px，弄清楚几个概念，<br>inline box 组成line box，就是n个span组成line box（一行的元素，div），line box的高度由inline box决定（inline box最高为30px），所以如图所示，div为30px高度，</p>
+</li>
+<li><p>line-height会撑起来inline box的高度，但不会影响它布局的高度，只是影响他占据空间的高度，所以div是30px高，而最大行高的span的行高并没有30px！~~</p>
+</li>
+<li><p>行高怎么来的？由linebox（div）来的，linebox由inline box(span)来的，所以inline box决定行高</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>背景颜色是根据字体大小来渲染的，和行高没有关系</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/06/08/VBHjYD.png" alt="VBHjYD.png"></p>
+<p>如果把font-size设大，背景颜色-蓝也会边长</p>
+<ul>
+<li>行高大于字体大小，那么文字居中，字体大小决定背景颜色的高度长度和行高没关系<br><img src="https://s2.ax1x.com/2019/06/08/VBqMgH.png" alt="VBqMgH.png"></li>
+</ul>
+<p>一道面试题：<br><a href="https://imgchr.com/i/VBObge" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/06/08/VBObge.md.jpg" alt="VBObge.md.jpg"></a></p>
+<ul>
+<li>图片下面有空隙，为什么？因为图片是inline元素，那么在一行上有顶线，中线，基线，底线，默认inline box对齐方式默认的vertical-align是baseline的基线，不是底线bottom，<code>而基线到底线有距离，所以有空隙</code>    <blockquote>
+<p>从上到下四条线分别是顶线、中线、基线、底线，很像才学英语字母时的四线三格，我们知道vertical-align属性中有top、middle、baseline、bottom，就是和这四条线相关。<br><a href="https://www.cnblogs.com/dolphinX/p/3236686.html" target="_blank" rel="noopener">顶线、中线、基线、底线</a></p>
+</blockquote>
+</li>
+</ul>
+<p><a href="https://imgchr.com/i/VBXJV1" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/06/08/VBXJV1.md.png" alt="VBXJV1.md.png"></a></p>
+<p>所以面试题解决空隙的方案是：vertical-align：底线bottom</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/07/css和html/02.attribute特性和property属性区别/" rel="next" title="02.attribute特性和property属性区别">
+                <i class="fa fa-chevron-left"></i> 02.attribute特性和property属性区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/07/css和html/04.css基础2，非布局样式：背景，边框，css hack/" rel="prev" title="04.css基础2，非布局样式：背景，边框，css hack">
+                04.css基础2，非布局样式：背景，边框，css hack <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Calm">
+          <p class="site-author-name" itemprop="name">Calm</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择器（1）"><span class="nav-number">1.</span> <span class="nav-text">选择器（1）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪元素与伪类"><span class="nav-number">2.</span> <span class="nav-text">伪元素与伪类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非布局样式（字体和字体族）"><span class="nav-number">3.</span> <span class="nav-text">非布局样式（字体和字体族）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非布局样式（行高）"><span class="nav-number">4.</span> <span class="nav-text">非布局样式（行高）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Calm</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
