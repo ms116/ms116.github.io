@@ -371,7 +371,7 @@
 <li>常用的Attribute，例如id、class、title等，已经被作为Property附加到DOM对象上，可以和Property一样取值和赋值</li>
 <li>title1 不会被认为是Property的，它是Attribute。下面的取值方式是针对Property的，Attribute不能这样取值</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(in1.title1);       <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="built_in">log</span>(in1.title1);       <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>HTML标签中定义的属性（包括自定义和默认的）和值会保存该DOM对象的attributes属性里面</li>
