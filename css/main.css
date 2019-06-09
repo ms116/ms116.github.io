@@ -1808,7 +1808,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #6603dd;
+  background: #932132;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2983,4 +2983,15 @@ pre .javascript .function {
 }
 .footer {
   bottom: auto;
+}
+@media screen and (min-width: 1200px) {
+  body {
+    background-image: url("https://s2.ax1x.com/2019/06/09/Vr40zR.md.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+  }
+  #footer a {
+    color: #eee;
+  }
 }
