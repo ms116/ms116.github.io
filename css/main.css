@@ -1808,7 +1808,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #74fff9;
+  background: #1301d4;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2987,7 +2987,7 @@ pre .javascript .function {
 body {
   background-image: url("https://s2.ax1x.com/2019/06/09/Vr5Gpd.jpg");
   background-size: cover;
-  background-repeat: repeat;
+  background-attachment: fixed;
 }
 #footer a {
   color: #eee;
