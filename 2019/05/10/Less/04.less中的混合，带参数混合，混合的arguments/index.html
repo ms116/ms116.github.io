@@ -96,14 +96,14 @@
 
 <meta name="description" content="less中的混合 什么是less中的混合(Mixin)?将需要重复使用的代码封装到一个类中,在需要使用的地方调用封装好的类即可，在预处理的时候less会自动将用到的封装好的类中的代码拷贝过来，本质就是ctrl+c  –&amp;gt; ctrl + v  12345678910111213141516171819.center&amp;#123;  position: absolute;  left: 50%;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="04.less中的混合，带参数混合">
-<meta property="og:url" content="http://yoursite.com/2019/05/10/Less/4.less中的混合，带参数混合/index.html">
+<meta property="og:title" content="04.less中的混合，带参数混合,混合的arguments">
+<meta property="og:url" content="http://yoursite.com/2019/05/10/Less/04.less中的混合，带参数混合，混合的arguments/index.html">
 <meta property="og:site_name" content="Calm">
 <meta property="og:description" content="less中的混合 什么是less中的混合(Mixin)?将需要重复使用的代码封装到一个类中,在需要使用的地方调用封装好的类即可，在预处理的时候less会自动将用到的封装好的类中的代码拷贝过来，本质就是ctrl+c  –&amp;gt; ctrl + v  12345678910111213141516171819.center&amp;#123;  position: absolute;  left: 50%;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-08T18:23:27.881Z">
+<meta property="og:updated_time" content="2019-06-09T05:25:50.246Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="04.less中的混合，带参数混合">
+<meta name="twitter:title" content="04.less中的混合，带参数混合,混合的arguments">
 <meta name="twitter:description" content="less中的混合 什么是less中的混合(Mixin)?将需要重复使用的代码封装到一个类中,在需要使用的地方调用封装好的类即可，在预处理的时候less会自动将用到的封装好的类中的代码拷贝过来，本质就是ctrl+c  –&amp;gt; ctrl + v  12345678910111213141516171819.center&amp;#123;  position: absolute;  left: 50%;">
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/10/Less/4.less中的混合，带参数混合/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/10/Less/04.less中的混合，带参数混合，混合的arguments/">
 
 
 
 
 
-  <title>04.less中的混合，带参数混合 | Calm</title>
+  <title>04.less中的混合，带参数混合,混合的arguments | Calm</title>
   
 
 
@@ -262,12 +262,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/10/Less/4.less中的混合，带参数混合/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/10/Less/04.less中的混合，带参数混合，混合的arguments/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Calm">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/06/09/VrWi2q.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">04.less中的混合，带参数混合</h1>
+          <h1 class="post-title" itemprop="name headline">04.less中的混合，带参数混合,混合的arguments</h1>
         
 
         <div class="post-meta">
@@ -376,6 +376,11 @@
 <li>赋值通过冒号赋值，参数也是，不是等于号</li>
 <li>即使混合有三个参数，你可以只传一个，且可以指定给哪一个形参传值</li>
 </ul>
+<h2 id="混合的arguments"><a href="#混合的arguments" class="headerlink" title="混合的arguments"></a>混合的arguments</h2><ul>
+<li>@arguments在mixins内部有特殊意义，调用mixin时，它包含所有传入的参数。如果你不想单个单个的处理参数，这一特性是很有用的</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">The</span> @<span class="selector-tag">arguments</span> <span class="selector-tag">variable</span> （@<span class="selector-tag">arguments</span> 变量）</span><br><span class="line">@<span class="selector-tag">arguments</span>在<span class="selector-tag">mixins</span>内部有特殊意义，调用<span class="selector-tag">mixin</span>时，它包含所有传入的参数。如果你不想单个单个的处理参数，这一特性是很有用的：</span><br><span class="line"><span class="selector-class">.box-shadow</span>(<span class="variable">@x</span>: <span class="number">0</span>; <span class="variable">@y</span>: <span class="number">0</span>; <span class="variable">@blur</span>: <span class="number">1px</span>; <span class="variable">@color</span>: <span class="number">#000</span>) &#123;</span><br><span class="line">  <span class="attribute">-webkit-box-shadow</span>: <span class="variable">@arguments</span>;</span><br><span class="line">     <span class="attribute">-moz-box-shadow</span>: <span class="variable">@arguments</span>;</span><br><span class="line">          <span class="attribute">box-shadow</span>: <span class="variable">@arguments</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.big-block</span> &#123;</span><br><span class="line">  <span class="selector-class">.box-shadow</span>(<span class="number">2px</span>; <span class="number">5px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">返回结果为：</span><br><span class="line"><span class="selector-class">.big-block</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-box-shadow</span>: <span class="number">2px</span> <span class="number">5px</span> <span class="number">1px</span> <span class="number">#000</span>;</span><br><span class="line">     <span class="attribute">-moz-box-shadow</span>: <span class="number">2px</span> <span class="number">5px</span> <span class="number">1px</span> <span class="number">#000</span>;</span><br><span class="line">          <span class="attribute">box-shadow</span>: <span class="number">2px</span> <span class="number">5px</span> <span class="number">1px</span> <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -410,8 +415,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/10/javascript/37.闭包基本概念/" rel="prev" title="37.闭包基本概念">
-                37.闭包基本概念 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/10/Less/05.less中混合的通用匹配模式和匹配模式/" rel="prev" title="05.less中混合的通用匹配模式和匹配模式">
+                05.less中混合的通用匹配模式和匹配模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -476,7 +481,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Calm">
+          <img class="site-author-image" itemprop="image" src="https://s2.ax1x.com/2019/06/09/VrWi2q.jpg" alt="Calm">
           <p class="site-author-name" itemprop="name">Calm</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -487,7 +492,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -535,7 +540,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#less中的混合"><span class="nav-number">1.</span> <span class="nav-text">less中的混合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带参数混合"><span class="nav-number">2.</span> <span class="nav-text">带参数混合</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#less中的混合"><span class="nav-number">1.</span> <span class="nav-text">less中的混合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带参数混合"><span class="nav-number">2.</span> <span class="nav-text">带参数混合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#混合的arguments"><span class="nav-number">3.</span> <span class="nav-text">混合的arguments</span></a></li></ol></div>
             
 
           </div>
