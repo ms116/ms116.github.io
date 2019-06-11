@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="Calm">
 <meta property="og:description" content="需求：黑夜，无数不同位置的星星闪烁，hover星星放大，转动180度 实现黑夜黑夜利用 background: #000;，占满屏幕 123456html,body&amp;#123;    width: 100%;    height: 100%;    background: #000;  &amp;#125;  一颗星星放大闪烁布局一颗星星，用span标签代表一颗星星，后面用js创建随机位置的星星 1234">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-10T04:16:24.298Z">
+<meta property="og:updated_time" content="2019-06-11T12:05:48.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="44.夜空中的星星">
 <meta name="twitter:description" content="需求：黑夜，无数不同位置的星星闪烁，hover星星放大，转动180度 实现黑夜黑夜利用 background: #000;，占满屏幕 123456html,body&amp;#123;    width: 100%;    height: 100%;    background: #000;  &amp;#125;  一颗星星放大闪烁布局一颗星星，用span标签代表一颗星星，后面用js创建随机位置的星星 1234">
@@ -205,7 +205,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            menu.Home
+            首页
           </a>
         </li>
       
@@ -215,7 +215,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            menu.Categories
+            分类
           </a>
         </li>
       
@@ -225,7 +225,17 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            menu.About
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
           </a>
         </li>
       
@@ -356,7 +366,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">html,body&#123;</span><br><span class="line">    width: <span class="number">100</span>%;</span><br><span class="line">    height: <span class="number">100</span>%;</span><br><span class="line">    background: #000;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="一颗星星放大闪烁"><a href="#一颗星星放大闪烁" class="headerlink" title="一颗星星放大闪烁"></a>一颗星星放大闪烁</h1><p>布局一颗星星，用span标签代表一颗星星，后面用js创建随机位置的星星</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">   span&#123;</span><br><span class="line">              display: inline-block;</span><br><span class="line">            width: <span class="number">30</span>px;</span><br><span class="line">            height: <span class="number">30</span>px;</span><br><span class="line">            background: url(<span class="string">"images/star.png"</span>) no-repeat;</span><br><span class="line">            background-size: <span class="number">100</span>% <span class="number">100</span>%;</span><br><span class="line">            animation: flash <span class="number">1</span>s alternate infinite;</span><br><span class="line">            position: absolute;</span><br><span class="line">        &#125;</span><br><span class="line">     @keyframes flash &#123;</span><br><span class="line">            <span class="keyword">from</span>&#123;</span><br><span class="line">                opacity: <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            to&#123;</span><br><span class="line">                opacity: <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">     span:hover&#123;</span><br><span class="line">            transform: scale(<span class="number">3</span>, <span class="number">3</span>) rotate(<span class="number">180</span>deg);</span><br><span class="line">            transition: all <span class="number">1</span>s;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&lt;span&gt;<span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">   span&#123;</span><br><span class="line">              display: inline-block;</span><br><span class="line">            width: <span class="number">30</span>px;</span><br><span class="line">            height: <span class="number">30</span>px;</span><br><span class="line">            background: url(<span class="string">"images/star.png"</span>) no-repeat;</span><br><span class="line">            background-size: <span class="number">100</span>% <span class="number">100</span>%;</span><br><span class="line">            animation: flash <span class="number">1</span>s alternate infinite;</span><br><span class="line">            position: absolute;</span><br><span class="line">        &#125;</span><br><span class="line">     @keyframes flash &#123;</span><br><span class="line">            <span class="keyword">from</span>&#123;</span><br><span class="line">                opacity: <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            to&#123;</span><br><span class="line">                opacity: <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">     span:hover&#123;</span><br><span class="line">            transform: scale(<span class="number">3</span>, <span class="number">3</span>) rotate(<span class="number">180</span>deg);</span><br><span class="line">            transition: all <span class="number">1</span>s;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&lt;span&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure>
 
 <p>放大旋转利用 <code>transform: scale(3, 3) rotate(180deg)</code></p>
 <p>不断闪烁利用：animation: flash 1s alternate infinite;</p>
@@ -414,8 +424,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/13/leetCode/557.字符串反转/" rel="prev" title="557.字符串反转">
-                557.字符串反转 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/11/js插件/01.fullpage简介，基本使用，常用属性/" rel="prev" title="01.fullpage简介，基本使用，常用属性">
+                01.fullpage简介，基本使用，常用属性 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -491,7 +501,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">89</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -502,12 +512,21 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>

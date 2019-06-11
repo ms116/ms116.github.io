@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="参考这个transfrom、transition、animation区别 transfromtransform是静态属性，非动画属性，和margin-left、margin-top类似。  translate：平移，类似position:relative;translate()分三种情况： translate(x, y) // 水平、垂直方向移动 translateX(x) // 水平方向移动，相">
+<meta property="og:type" content="article">
+<meta property="og:title" content="08.transfrom、transition、animation区别">
+<meta property="og:url" content="http://yoursite.com/2019/03/07/css和html/08.transfrom、transition、animation区别/index.html">
+<meta property="og:site_name" content="Calm">
+<meta property="og:description" content="参考这个transfrom、transition、animation区别 transfromtransform是静态属性，非动画属性，和margin-left、margin-top类似。  translate：平移，类似position:relative;translate()分三种情况： translate(x, y) // 水平、垂直方向移动 translateX(x) // 水平方向移动，相">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-11T09:29:23.701Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="08.transfrom、transition、animation区别">
+<meta name="twitter:description" content="参考这个transfrom、transition、animation区别 transfromtransform是静态属性，非动画属性，和margin-left、margin-top类似。  translate：平移，类似position:relative;translate()分三种情况： translate(x, y) // 水平、垂直方向移动 translateX(x) // 水平方向移动，相">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/07/css和html/08.transfrom、transition、animation区别/">
+
+
+
+
+
+  <title>08.transfrom、transition、animation区别 | Calm</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Calm</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/css和html/08.transfrom、transition、animation区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Calm">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/06/09/VrWi2q.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Calm">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">08.transfrom、transition、animation区别</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-07T21:21:55+08:00">
+                2019-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css和html/" itemprop="url" rel="index">
+                    <span itemprop="name">css和html</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考这个<a href="https://www.cnblogs.com/tracy-ling/p/10076880.html" target="_blank" rel="noopener">transfrom、transition、animation区别</a></p>
+<h1 id="transfrom"><a href="#transfrom" class="headerlink" title="transfrom"></a>transfrom</h1><p>transform<strong>是静态属性，非动画属性</strong>，和margin-left、margin-top类似。</p>
+<ul>
+<li>translate：平移，类似position:relative;translate()分三种情况：<ul>
+<li>translate(x, y) // 水平、垂直方向移动</li>
+<li>translateX(x) // 水平方向移动，相当于translate(x, 0)</li>
+<li>translateY(y) // 垂直方向移动，相当于translate(0, y)</li>
+</ul>
+</li>
+<li>scale：缩放，x,y可以是负数，负数的情况缩放并反转<ul>
+<li>scale(x, y) // 水平、垂直方向缩放，第二个参数未提供则取与第一个一样的值</li>
+<li>scaleX(x) // x轴缩放</li>
+<li>scaleY(y) // y轴缩放</li>
+</ul>
+</li>
+<li>rotate：旋转，整数顺时针，负数逆时针<ul>
+<li>transform:rotate(90deg);</li>
+<li>transform-origin:top center; // 变形的基点，默认中心点</li>
+</ul>
+</li>
+<li>skew：斜角变换<ul>
+<li>skew(x, y) // 沿x轴、y轴进行扭曲变形，第二个参数未提供取值为0</li>
+<li>skewX(x) // 沿x轴进行扭曲变形</li>
+<li>skewY(y) // 沿y轴进行扭曲变形</li>
+</ul>
+</li>
+<li>matrix：将所有的2D效果全部组合在了一起使用</li>
+</ul>
+<h1 id="transition"><a href="#transition" class="headerlink" title="transition"></a>transition</h1><p><strong>animation的简化版本</strong></p>
+<ul>
+<li>transition: all 1s ease 0; // 过渡效果的css属性名称、过渡效果时间、速度曲线、延迟时间</li>
+</ul>
+<p><strong>那么简化了哪些地方？对比下面animation的属性，属性越多，控制的动画功能越多</strong></p>
+<h1 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h1><blockquote>
+<p>transition虽然简单好用，但是我们会发现它受到各种限制</p>
+<p>1：transition需要一个<a href="http://www.php.cn/php/php-tp-incident.html" target="_blank" rel="noopener">事件</a>来触发，比如hover，所以没法在网页加载时自动发生</p>
+<p>2: transition是一次性的，不能重复发生，除非一再触发。</p>
+<p>3： transition只能定义开始<a href="http://www.php.cn/code/8243.html" target="_blank" rel="noopener">状态</a>和结束状态，不能定义中间状态，也就是说只有两个状态。</p>
+<p>4：一条transition规则，只能定义一个属性的变化，不能涉及多个属性。</p>
+<p>（为了表达清晰，上述4条限制是我引用阮一峰大神博客里的简介）</p>
+<p>为了突破这些限制，animation出来了</p>
+</blockquote>
+<ul>
+<li>animation: move 1s ease 0 infinite alternate; // keyframe名字、过渡效果时间、速度曲线、延迟时间、循环次数、是否轮流反向播放动画</li>
+<li>定义keyframe：@keyframes name {}</li>
+</ul>
+<h1 id="transition和animation做动画"><a href="#transition和animation做动画" class="headerlink" title="transition和animation做动画"></a>transition和animation做动画</h1><p>常和transfrom配合使用，区别如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>transition</th>
+<th>animation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>触发条件</td>
+<td>通常和hover等事件配合，由事件触发</td>
+<td>和gif差不多，立即播放</td>
+</tr>
+<tr>
+<td>循环</td>
+<td>不能循环</td>
+<td>可设置循环次数</td>
+</tr>
+<tr>
+<td>精确性</td>
+<td>只能设置头尾，所有样式属性都要一起变化</td>
+<td>可以设置每一帧的时间和样式，每一帧变化的样式可以单独设置</td>
+</tr>
+<tr>
+<td>与JavaScript的交互</td>
+<td>tranistion和js的结合更强大。js设定要变化的样式，transition负责动画效果</td>
+<td>与js交互不是很紧密</td>
+</tr>
+</tbody></table>
+<p>这篇也挺好<a href="http://www.php.cn/css-tutorial-356867.html" target="_blank" rel="noopener">关于css3里的transition和animation区别介绍</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/07/css和html/07.css布局：flexbox伸缩布局/" rel="next" title="07.css布局：flexbox伸缩布局">
+                <i class="fa fa-chevron-left"></i> 07.css布局：flexbox伸缩布局
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/16/前端性能优化/01.引言：一个老生常谈的面试问题/" rel="prev" title="01.引言：一个老生常谈的面试问题">
+                01.引言：一个老生常谈的面试问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://s2.ax1x.com/2019/06/09/VrWi2q.jpg" alt="Calm">
+          <p class="site-author-name" itemprop="name">Calm</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#transfrom"><span class="nav-number">1.</span> <span class="nav-text">transfrom</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#transition"><span class="nav-number">2.</span> <span class="nav-text">transition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#animation"><span class="nav-number">3.</span> <span class="nav-text">animation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#transition和animation做动画"><span class="nav-number">4.</span> <span class="nav-text">transition和animation做动画</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Calm</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
